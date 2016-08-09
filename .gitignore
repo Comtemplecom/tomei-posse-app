@@ -6,6 +6,8 @@ node_modules
 # production
 build
 config.js
+config.json
+ftpsync.log
 # misc
 .DS_Store
 npm-debug.log

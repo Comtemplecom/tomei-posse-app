@@ -21,24 +21,28 @@ Promise.all([openSansObserver.load(), oswaldObserver.load()])
 });
 
 // Function that redirects to LoginPage if not logged
-function redirectToLogin() {
-  return (nextState, replace) => {
-    if (!currentUser()) {
-      replace({
-        pathname: '/',
-        state: { nextPathname: nextState.location.pathname },
-      });
-    }
-  };
+const redirectToLogin = (nextState, replace, callback) => {
+  if (!currentUser()) {
+    replace({
+      pathname: '/',
+      state: { nextPathname: nextState.location.pathname },
+    });
+    callback();
+  } else {
+    callback();
+  }
 }
 
 // Function that redirects LoginPage to dashboard if logged
-function redirectToDashboard() {
-  return (nextState, replace) => {
+const redirectToDashboard = (nextState, replace, callback) => {
     if (currentUser()) {
+      console.log(currentUser());
       replace('/area-restrita');
+      callback();
+    } else {
+      callback();
     }
-  };
+
 }
 
 ReactDOM.render(
@@ -50,7 +54,7 @@ ReactDOM.render(
       />
       <Route
         onEnter={redirectToLogin}
-        path="area-restrita"
+        path="/area-restrita"
         component={StudentPage}
       />
       <Route path="*" component={NotFoundPage}/>

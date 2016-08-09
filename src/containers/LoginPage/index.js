@@ -5,6 +5,7 @@
  */
 
 import React from 'react';
+
 import LoginHeader from '../../components/LoginHeader';
 import LoginForm from '../../components/LoginForm';
 import Footer from '../../components/Footer';
@@ -43,7 +44,8 @@ class LoginPage extends React.Component { // eslint-disable-line react/prefer-st
             error: res.errorMessage
           });
         } else {
-          console.log(res);
+          console.log(res, this.props);
+          this.props.history.push('/area-restrita');
         }
     }).catch((err) => {
       this.setState({
