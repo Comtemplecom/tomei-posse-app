@@ -6,7 +6,6 @@
 
 .container {
 	width: 100%;
-	background: #000;
 	text-align: center;
 	display: flex;
 	flex-flow: row nowrap;
