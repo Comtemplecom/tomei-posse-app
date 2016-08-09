@@ -6,6 +6,7 @@
 
 import React from 'react';
 
+import Button from '../Button';
 
 import styles from './styles.css';
 
@@ -21,7 +22,9 @@ function DocumentItem({ title, description, img }) {
     			<h3>{description}</h3>
     		</div>
     		<div className={styles.button}>
-    			<button>baixar</button>
+    			<Button
+            label="baixar"
+          />
     		</div>
     	</div>
     </div>

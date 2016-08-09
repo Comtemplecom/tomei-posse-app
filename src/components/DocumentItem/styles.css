@@ -12,10 +12,23 @@
 	justify-content: space-around;
 }
 
+.img {
+	width: 35%;
+}
+
+.info {
+	width: 40%;
+}
+
+.info h1 {
+	font-size: 18px;
+}
+
 .info h3 {
 	font-weight: 300;
 	font-size: 14px;
 }
-.button button {
-	border: 1px solid #fff;
+
+.button {
+	width: 20%;
 }
