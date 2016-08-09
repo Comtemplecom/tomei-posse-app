@@ -1,0 +1,14 @@
+.button {
+  letter-spacing: 1px;
+  border: 2px solid #000;
+  margin: 5% auto;
+  font-weight: 300;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: none;
+  color: #000;
+}

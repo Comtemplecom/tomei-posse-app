@@ -1,0 +1,15 @@
+.wrapper {
+	background: grey;
+	margin: 0 auto;
+	padding: 20px 60px;
+}
+
+.container {
+	width: 100%;
+	background: #000;
+	text-align: center;
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	justify-content: space-between;
+}

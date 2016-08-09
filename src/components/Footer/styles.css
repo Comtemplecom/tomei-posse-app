@@ -1,0 +1,13 @@
+.wrapper { /* stylelint-ignore */
+  background: #000;
+  color: #fff;
+  width: 100%;
+  padding: 60px 0;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+  font-size: 13px;
+  font-weight: 100;
+}

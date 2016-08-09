@@ -1,0 +1,17 @@
+.wrapper { /* stylelint-ignore */
+  background: #fff;
+  padding: 40px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.container h1 {
+  font-size: 18px;
+  letter-spacing: 4px;
+  font-weight: 600;
+  text-transform: uppercase;
+  line-height: 23px;
+}

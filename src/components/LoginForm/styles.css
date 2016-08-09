@@ -1,0 +1,23 @@
+.container { /* stylelint-ignore */
+  width: 60%;
+  margin: 0 auto;
+  padding: 15% 0;
+}
+.error {
+    color: red;
+    font-size: 11px;
+}
+
+label {
+  text-transform: uppercase;
+  line-height: 23px;
+  color: #626262;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  margin-bottom: 10px;
+  font-weight: 100;
+}
+
+@media (min-width: 1200px) {
+  width: 968px;
+}

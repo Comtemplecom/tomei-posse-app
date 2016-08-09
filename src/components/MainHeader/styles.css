@@ -1,0 +1,29 @@
+.wrapper {
+  padding: 150px 0 60px;
+  color: #fff;
+  background: #000;
+}
+
+.container {
+  display: flex;
+  flex-flow: column nowrap;
+  align-content: center;
+  text-align: center;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.line {
+  margin: 0 auto;
+  width: 50px;
+  height: 2px;
+  background: yellow;
+}
+
+.title {
+
+}
+
+.subTitle h3 {
+	font-weight: 300;
+}
