@@ -44,7 +44,6 @@ class LoginPage extends React.Component { // eslint-disable-line react/prefer-st
             error: res.errorMessage
           });
         } else {
-          console.log(res, this.props);
           this.props.history.push('/area-restrita');
         }
     }).catch((err) => {

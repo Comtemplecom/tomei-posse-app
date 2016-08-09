@@ -54,7 +54,8 @@
   },
   "scripts": {
     "start": "node ./scripts/start.js",
-    "build": "node ./scripts/build.js"
+    "build": "node ./scripts/build.js",
+    "deploy": "npm run build && ftpsync -v"
   },
   "eslintConfig": {
     "extends": "./config/eslint.js"
