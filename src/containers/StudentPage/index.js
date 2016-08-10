@@ -16,6 +16,19 @@ import Footer from '../../components/Footer';
 import styles from './styles.css';
 
 export class StudentPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentCategory: 'Todos',
+    }
+  }
+
+  handleCategoryChange = (category) => {
+    this.setState({
+      currentCategory: category
+    })
+  }
+
   handleLogout = () => {
     Firebase.logoutUser().then((res) => {
       if(res.success) {
@@ -27,12 +40,18 @@ export class StudentPage extends React.Component { // eslint-disable-line react/
   }
 
   render() {
+    const { currentCategory } = this.state;
     return (
       <div>
         <Header />
         <main className={styles.main}>
-          <CategoryBar />
-          <DocumentList />
+          <CategoryBar
+            change={this.handleCategoryChange}
+            current={currentCategory}
+          />
+          <DocumentList
+            current={currentCategory}
+          />
         </main>
         <Footer
           logout={this.handleLogout}
