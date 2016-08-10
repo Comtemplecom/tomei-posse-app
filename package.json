@@ -2,7 +2,7 @@
   "name": "tomeiposse",
   "version": "0.0.1",
   "private": true,
-  "homepage": "http://tomeiposse.com/wp/area-restrita",
+  "homepage": "https://tomei-posse.firebaseapp.com",
   "devDependencies": {
     "autoprefixer": "6.3.7",
     "babel-core": "6.11.4",
@@ -55,7 +55,8 @@
   "scripts": {
     "start": "node ./scripts/start.js",
     "build": "node ./scripts/build.js",
-    "deploy": "npm run build && ftpsync -v"
+    "deploy": "npm run build && ftpsync -v",
+    "stage": "npm run build && firebase deploy"
   },
   "eslintConfig": {
     "extends": "./config/eslint.js"
