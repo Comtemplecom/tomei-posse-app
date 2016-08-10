@@ -5,6 +5,8 @@
  */
 
 import React from 'react';
+import Firebase from '../../utils/firebase';
+import { currentUser } from '../../utils/localstorage';
 
 import Header from '../../components/MainHeader';
 import CategoryBar from '../../components/CategoryBar';
@@ -14,6 +16,16 @@ import Footer from '../../components/Footer';
 import styles from './styles.css';
 
 export class StudentPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  handleLogout = () => {
+    Firebase.logoutUser().then((res) => {
+      if(res.success) {
+          this.props.history.push('/');
+      }
+    }).catch((err) => {
+      console.log(err);
+    });
+  }
+
   render() {
     return (
       <div>
@@ -22,7 +34,10 @@ export class StudentPage extends React.Component { // eslint-disable-line react/
           <CategoryBar />
           <DocumentList />
         </main>
-        <Footer />
+        <Footer
+          logout={this.handleLogout}
+          user={currentUser()}
+        />
       </div>
     );
   }
