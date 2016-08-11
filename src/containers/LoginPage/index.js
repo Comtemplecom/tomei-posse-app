@@ -5,6 +5,7 @@
  */
 
 import React from 'react';
+import { withRouter } from 'react-router'
 
 import LoginHeader from '../../components/LoginHeader';
 import LoginForm from '../../components/LoginForm';
@@ -44,7 +45,7 @@ class LoginPage extends React.Component { // eslint-disable-line react/prefer-st
             error: res.errorMessage
           });
         } else {
-          this.props.history.push('/area-restrita');
+          this.props.router.push('/area-restrita');
         }
     }).catch((err) => {
       this.setState({
@@ -69,4 +70,4 @@ class LoginPage extends React.Component { // eslint-disable-line react/prefer-st
   }
 }
 
-export default LoginPage;
+export default withRouter(LoginPage);

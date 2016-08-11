@@ -9,12 +9,13 @@ import StudentPage from './containers/StudentPage';
 import 'sanitize.css/sanitize.css';
 
 // Fonts
+require('./index.css')
 import styles from './index.css';
 import FontFaceObserver from 'fontfaceobserver';
 const openSansObserver = new FontFaceObserver('Open Sans');
 const oswaldObserver = new FontFaceObserver('Oswald');
 
-Promise.all([openSansObserver.load(), oswaldObserver.load()])
+Promise.all([oswaldObserver.load(), openSansObserver.load()])
 .then(() => {
   console.log('fonts loaded styles:');
   document.body.classList.add(styles.fontLoaded);

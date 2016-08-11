@@ -1,4 +1,4 @@
-.button {
+.buttonBase {
   letter-spacing: 1px;
   border: 2px solid #000;
   margin: 5% auto;
@@ -11,8 +11,14 @@
   padding: 10px 18px;
 }
 
-.button:hover {
+.buttonBase:hover {
+  background: none;
+  color: #000;
+  border: 2px solid #000;
+}
+
+.buttonDark:hover {
   background: none;
   color: #fff;
-  border: 1px solid #fff;
+  border: 2px solid #fff;
 }

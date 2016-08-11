@@ -5,12 +5,28 @@
 */
 
 import React from 'react';
+import Modal from 'react-modal';
 
 import DocumentItem from '../DocumentItem';
+import Button from '../../components/Button';
+import AdminModal from '../../components/AdminModal';
 
 import styles from './styles.css';
+const modalStyle = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)'
+  },
+  overlay : {
+    backgroundColor   : 'rgba(0, 0, 0, 0.75)'
+  },
+};
 
-function DocumentList({ items, current }) {
+function DocumentList({ openModal, closeModal, items, current, admin, adminModal }) {
   return (
     <div className={styles.wrapper}>
     	<div className={styles.container}>
@@ -20,6 +36,18 @@ function DocumentList({ items, current }) {
             }
             return <DocumentItem key={key} {...item} />;
         })}
+        {admin &&
+            <div>
+              <Button label='Adicionar novo' onClick={openModal} />
+              <Modal
+                isOpen={adminModal}
+                onRequestClose={closeModal}
+                style={modalStyle}
+              >
+                <AdminModal />
+              </Modal>
+            </div>
+        }
     	</div>
     </div>
   );

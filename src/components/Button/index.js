@@ -10,7 +10,7 @@ import React from 'react';
 import styles from './styles.css';
 
 
-function Button({ type, label, small, dark, rounded }) {
+function Button({ type, label, small, dark, rounded, onClick }) {
   const getStyle = () => {
     let style = {};
     if (small) {
@@ -27,11 +27,19 @@ function Button({ type, label, small, dark, rounded }) {
     return style;
   };
 
+  const getClass = () => {
+    let buttonClass = [styles.buttonBase];
+    if (dark) {
+      buttonClass.push(styles.buttonDark)
+    }
+    return buttonClass.join(' ')
+  }
   return (
     <button
-      className={styles.button}
+      className={getClass()}
       type={type}
       style={getStyle()}
+      onClick={onClick}
     >
       {label}
     </button>

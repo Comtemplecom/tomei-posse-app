@@ -5,7 +5,10 @@
  */
 
 import React from 'react';
+import { withRouter } from 'react-router';
+
 import Firebase from '../../utils/firebase';
+import { ADMIN_UID } from '../../../config';
 import { currentUser } from '../../utils/localstorage';
 
 import Header from '../../components/MainHeader';
@@ -19,7 +22,17 @@ export class StudentPage extends React.Component { // eslint-disable-line react/
   constructor(props) {
     super(props);
     this.state = {
-      currentCategory: 'Todos',
+      admin: false,
+      current: 'Todos',
+      adminModal: false,
+    }
+  }
+
+  componentDidMount () {
+    if(currentUser().uid === ADMIN_UID) {
+      this.setState({
+        admin: true,
+      });
     }
   }
 
@@ -32,25 +45,39 @@ export class StudentPage extends React.Component { // eslint-disable-line react/
   handleLogout = () => {
     Firebase.logoutUser().then((res) => {
       if(res.success) {
-          this.props.history.push('/');
+          this.props.router.push('/');
       }
     }).catch((err) => {
       console.log(err);
     });
   }
 
+  openModal = () => {
+    this.setState({
+      adminModal: true
+    });
+  }
+
+  closeModal = () => {
+    this.setState({
+      adminModal: false
+    });
+  }
+
   render() {
-    const { currentCategory } = this.state;
+    const { current } = this.state;
     return (
       <div>
         <Header />
         <main className={styles.main}>
           <CategoryBar
             change={this.handleCategoryChange}
-            current={currentCategory}
+            current={current}
           />
           <DocumentList
-            current={currentCategory}
+            openModal={this.openModal}
+            closeModal={this.closeModal}
+            {...this.state}
           />
         </main>
         <Footer
@@ -62,4 +89,4 @@ export class StudentPage extends React.Component { // eslint-disable-line react/
   }
 }
 
-export default StudentPage;
+export default withRouter(StudentPage);
