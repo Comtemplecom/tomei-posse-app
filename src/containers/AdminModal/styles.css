@@ -10,6 +10,19 @@
 	justify-content: space-around;
 }
 
+.category {
+	margin: 25px auto 40px;
+}
+.createCat {
+	margin: 30px auto;
+	display: flex;
+	flex-flow: row nowrap;
+}
+
+.catInput {
+	width: 40%;
+}
+
 .link {
 	font-size: 13px;
 	cursor: pointer;

@@ -11,7 +11,7 @@ import { Fieldset, Field } from 'react-forms';
 import Dropzone from 'react-dropzone';
 const Line = require('rc-progress').Line;
 import Icon from 'react-evil-icons';
-import { firebaseStorage } from '../../utils/firebase';
+import { firebaseStorage, firebaseDb } from '../../utils/firebase';
 
 import Button from '../../components/Button';
 
@@ -24,10 +24,16 @@ class AdminModal extends React.Component {
 	      	value: props.value,
 	      	onChange: this.onChangeForm.bind(this)
 	    });
+	    const firstCat = this.props.categoryList[0].name;
     	this.state = {
     		formValue,
     		titleError: false,
     		descriptionError: false,
+    		createCat: {
+    			open: false,
+    			input: '',
+    		},
+    		category: firstCat,
     		imageUpload: {
     			progress: 0,
     			running: false,
@@ -217,30 +223,92 @@ class AdminModal extends React.Component {
   		
   	}
 
-  	onSubmit = () => {
-  		const { formValue } = this.state;
+  	handleToggleCat = () => {
+  		this.setState({
+  			createCat: {
+  				open: true,
+  				input: '',
+  			}
+  		});
+  	}
+
+  	handleCreateCatInput = (e) => {
+  		this.setState({
+  			createCat: {
+  				open: true,
+  				input: e.target.value,
+  			}
+  		});
+  	}
+
+  	handleCatChange = (e) => {
+  		console.log('e:', e);
+  		this.setState({
+  			category: e.target.value,
+  		})
+  	}
+
+  	handleCreateCatSubmit = (e) => {
+  		e.preventDefault();
+  		firebaseDb.ref().child('categories').push(this.state.createCat.input).then((res) => {
+  			console.log('res:', res);
+  		}).catch((err) => {
+  			console.log('err:', err);
+  		})
+  		this.setState({
+  			createCat: {
+  				open: false,
+  				input: '',
+  			}
+  		});
+  	}
+
+  	onSubmit = (e) => {
+  		e.preventDefault();
+  		const { formValue, imageUpload, docUpload, category } = this.state;
   		const { title, description } = formValue.value;
-  		// console.log('title, description, img, file, category:', title, description, img, file, category);
+  		const newItem = {
+  			title,
+  			description,
+  			coverImg: imageUpload.url,
+  			documentUrl: docUpload.url,
+  			category
+  		}
+  		firebaseDb.ref().child('documents').push(newItem).then((res) => {
+  			console.log('res:', res);
+  			this.props.closeModal();
+  		}).catch((err) => {
+  			console.log('err:', err);
+  		})
   	}
 
 	render() {
-		const { formValue, titleError, imageUpload, docUpload } = this.state;
+		const { formValue, titleError, createCat, imageUpload, docUpload } = this.state;
   		const { categoryList } = this.props;
 
 		return (
 		    <div className={styles.wrapper}>
 			    <div className={styles.container}>
-			        <h1>Adicionar novo</h1>
 			        	<form onSubmit={this.onSubmit}>
 			        		{titleError && <span className={styles.error}>Insira o título</span>}
 				        	<Fieldset formValue={formValue}>
 						        <Field select="title" label="Título" />
-						        <Field select="description" label="Descrição" />
+						        <Field select="description" type="text-area" label="Descrição" />
 						    </Fieldset>
-						    <span>Categoria - <span className={styles.link}>criar nova</span></span>
-						    <select>
-						    	{categoryList.map((item, key) => <option key={key} value={item.name}>{item.name}</option>)}
-						    </select>
+						    <div className={styles.category}>
+							    <span>Categoria - 
+							    	{ !createCat.open && <span className={styles.link} onClick={this.handleToggleCat}>criar nova</span> }
+							    	{ createCat.open && 
+							    		<div className={styles.createCat}>
+								    		<input className={styles.catInput} value={createCat.input} onChange={this.handleCreateCatInput} />
+								    		<button onClick={this.handleCreateCatSubmit}>Criar</button>
+								    	</div>
+								    	}
+							    </span>
+							    <select onChange={this.handleCatChange}>
+							    	{categoryList.map((item, key) => <option key={key} value={item}>{item}</option>)}
+							    </select>
+							</div>    
 						    <div className={styles.uploadContainer}>
 						    	<div>
 								    <span>Imagem de capa</span>
@@ -268,7 +336,7 @@ class AdminModal extends React.Component {
 							    	}
 							    	{docUpload.url &&
 							    		<div>
-							    			<img src={docUpload.url} height='150' />
+							    			Upload do <a href={docUpload.url} target='_blank'>documento</a> feito com sucesso.
 							    		</div>
 							    	}
 							    </div>

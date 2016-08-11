@@ -48,6 +48,7 @@
     "evil-icons": "^1.8.0",
     "firebase": "^3.2.1",
     "fontfaceobserver": "^2.0.1",
+    "lodash": "^4.14.2",
     "rc-progress": "^1.0.4",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",

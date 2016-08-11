@@ -66,7 +66,7 @@ const FireBaseTools = {
         errorMessage: error.message,
       };
     });
-  },
+  }
 };
 
 export default FireBaseTools;

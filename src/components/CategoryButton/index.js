@@ -9,13 +9,13 @@ import React from 'react';
 
 import styles from './styles.css';
 
-function CategoryButton({ change, title, active }) {
+function CategoryButton({ change, name, active }) {
   return (
     <button
       className={active ? styles.activeButton : styles.button}
-      onClick={() => change(title)}
+      onClick={() => change(name)}
     >
-    	{title}
+    	{name}
     </button>
   );
 }

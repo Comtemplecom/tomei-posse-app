@@ -6,8 +6,9 @@
 
 import React from 'react';
 import { withRouter } from 'react-router';
+import mapValues from 'lodash/mapValues';
 
-import Firebase from '../../utils/firebase';
+import Firebase, { firebaseDb } from '../../utils/firebase';
 import { ADMIN_UID } from '../../../config';
 import { currentUser } from '../../utils/localstorage';
 
@@ -25,10 +26,38 @@ export class StudentPage extends React.Component { // eslint-disable-line react/
       admin: false,
       current: 'Todos',
       adminModal: false,
+      categories: [],
+      documents: [],
     }
   }
 
   componentDidMount () {
+    // Fetch categories
+    const categoryListRef = firebaseDb.ref('categories');
+    let catList = [];
+    categoryListRef.on('value', (data) => {
+      mapValues(data.val(), (item) => {
+        catList.push(item);
+      });
+      console.log('catList:', catList);
+      this.setState({
+        categories: catList
+      });
+    });
+
+    // Fetch documents
+    const documentsRef = firebaseDb.ref('documents');
+    let docList = [];
+    documentsRef.on('value', (data) => {
+      mapValues(data.val(), (item) => {
+        docList.push(item);
+      });
+      this.setState({
+        documents: docList
+      });
+    });
+
+    // Check is user is admin
     if(currentUser().uid === ADMIN_UID) {
       this.setState({
         admin: true,
@@ -65,7 +94,7 @@ export class StudentPage extends React.Component { // eslint-disable-line react/
   }
 
   render() {
-    const { current } = this.state;
+    const { current, categories } = this.state;
     return (
       <div>
         <Header />
@@ -73,6 +102,7 @@ export class StudentPage extends React.Component { // eslint-disable-line react/
           <CategoryBar
             change={this.handleCategoryChange}
             current={current}
+            categories={categories}
           />
           <DocumentList
             openModal={this.openModal}
