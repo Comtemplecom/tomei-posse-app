@@ -45,10 +45,15 @@
     "whatwg-fetch": "1.0.0"
   },
   "dependencies": {
+    "evil-icons": "^1.8.0",
     "firebase": "^3.2.1",
     "fontfaceobserver": "^2.0.1",
+    "rc-progress": "^1.0.4",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
+    "react-dropzone": "^3.5.3",
+    "react-evil-icons": "^0.4.0",
+    "react-forms": "^2.0.0-beta33",
     "react-modal": "^1.4.0",
     "react-router": "^2.6.1",
     "sanitize.css": "^4.1.0"

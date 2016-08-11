@@ -10,6 +10,7 @@ if (FIREBASE_CONFIG.apiKey.length < 1) {
 export const firebaseApp = firebase.initializeApp(FIREBASE_CONFIG);
 export const firebaseAuth = firebaseApp.auth();
 export const firebaseDb = firebaseApp.database();
+export const firebaseStorage = firebaseApp.storage().ref();
 
 const FireBaseTools = {
   loginUser: (email, password) => {

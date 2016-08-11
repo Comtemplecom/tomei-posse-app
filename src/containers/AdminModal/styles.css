@@ -1,0 +1,17 @@
+.error {
+	font-size: 13px;
+	color: red;
+}
+
+.uploadContainer {
+	display: flex;
+	flex-flow: row wrap;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.link {
+	font-size: 13px;
+	cursor: pointer;
+	color: blue;
+}

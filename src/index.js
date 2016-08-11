@@ -9,7 +9,7 @@ import StudentPage from './containers/StudentPage';
 import 'sanitize.css/sanitize.css';
 
 // Fonts
-require('./index.css')
+import './index.css';
 import styles from './index.css';
 import FontFaceObserver from 'fontfaceobserver';
 const openSansObserver = new FontFaceObserver('Open Sans');

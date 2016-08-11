@@ -18,7 +18,7 @@ h1 {
   font-family: 'Oswald', 'Open Sans', sans-serif;
 }
 
-input {
+input, select {
   width: 100%;
   background: #fff;
   border: 1px solid rgba(0,0,0,.2);

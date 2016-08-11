@@ -9,20 +9,21 @@ import Modal from 'react-modal';
 
 import DocumentItem from '../DocumentItem';
 import Button from '../../components/Button';
-import AdminModal from '../../components/AdminModal';
+import AdminModal from '../../containers/AdminModal';
 
 import styles from './styles.css';
 const modalStyle = {
   content : {
-    top                   : '50%',
-    left                  : '50%',
-    right                 : 'auto',
-    bottom                : 'auto',
-    marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)'
+    width: '80%',
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
   },
   overlay : {
-    backgroundColor   : 'rgba(0, 0, 0, 0.75)'
+    backgroundColor: 'rgba(0, 0, 0, 0.75)'
   },
 };
 
@@ -44,7 +45,7 @@ function DocumentList({ openModal, closeModal, items, current, admin, adminModal
                 onRequestClose={closeModal}
                 style={modalStyle}
               >
-                <AdminModal />
+                <AdminModal categoryList={[{ name: 'Categoria 1' }, { name: 'Categoria 2' }, { name: 'Categoria 3' }, ]} />
               </Modal>
             </div>
         }
