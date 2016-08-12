@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import { currentUser } from './utils/localstorage';
+import Firebase from './utils/firebase';
 import App from './containers/App';
 import NotFoundPage from './containers/NotFoundPage';
 import LoginPage from './containers/LoginPage';
@@ -21,6 +22,12 @@ Promise.all([oswaldObserver.load(), openSansObserver.load()])
   document.body.classList.add(styles.fontLoaded);
 });
 
+Firebase.fetchUser().then((res) => {
+  console.log('res:', res);
+}).catch((err) => {
+  console.log('err:', err);
+})
+
 // Function that redirects to LoginPage if not logged
 const redirectToLogin = (nextState, replace, callback) => {
   if (!currentUser()) {
@@ -37,7 +44,6 @@ const redirectToLogin = (nextState, replace, callback) => {
 // Function that redirects LoginPage to dashboard if logged
 const redirectToDashboard = (nextState, replace, callback) => {
     if (currentUser()) {
-      console.log(currentUser());
       replace('/area-restrita');
       callback();
     } else {

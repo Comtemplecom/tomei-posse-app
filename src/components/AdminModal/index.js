@@ -18,7 +18,6 @@ function AdminModal({
 	formValue, titleError, createCat, imageUpload, docUpload, categoryList,
 	onSubmit, handleToggleCat, handleCreateCatSubmit, handleCatChange, handleImgUpload, handleDocUpload, handleCreateCatInput
 	}) {
-	console.log('categoryList:', categoryList);
 	return (
 	    <div className={styles.wrapper}>
 		    <div className={styles.container}>
