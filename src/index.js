@@ -22,11 +22,14 @@ Promise.all([oswaldObserver.load(), openSansObserver.load()])
   document.body.classList.add(styles.fontLoaded);
 });
 
-Firebase.fetchUser().then((res) => {
-  console.log('res:', res);
-}).catch((err) => {
-  console.log('err:', err);
-})
+const user = () => {
+    return Firebase.fetchUser().then((res) => {
+      return res;
+    }).catch((err) => {
+      console.log('err:', err);
+      return err;
+    })
+}
 
 // Function that redirects to LoginPage if not logged
 const redirectToLogin = (nextState, replace, callback) => {
