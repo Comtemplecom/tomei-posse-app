@@ -1,23 +1,17 @@
 /**
 *
-* AdminModal
+* Admin
 *
 */
 
 import React from 'react';
 import firebase from 'firebase';
 import { createValue } from 'react-forms';
-import { Fieldset, Field } from 'react-forms';
-import Dropzone from 'react-dropzone';
-const Line = require('rc-progress').Line;
-import Icon from 'react-evil-icons';
 import { firebaseStorage, firebaseDb } from '../../utils/firebase';
 
-import Button from '../../components/Button';
+import AdminModal from '../../components/AdminModal';
 
-import styles from './styles.css';
-
-class AdminModal extends React.Component {
+class Admin extends React.Component {
 	constructor(props) {
     	super(props)
 	    let formValue = createValue({
@@ -283,79 +277,26 @@ class AdminModal extends React.Component {
   	}
 
 	render() {
-		const { formValue, titleError, createCat, imageUpload, docUpload } = this.state;
-  		const { categoryList } = this.props;
-
 		return (
-		    <div className={styles.wrapper}>
-			    <div className={styles.container}>
-			        	<form onSubmit={this.onSubmit}>
-			        		{titleError && <span className={styles.error}>Insira o título</span>}
-				        	<Fieldset formValue={formValue}>
-						        <Field select="title" label="Título" />
-						        <Field select="description" type="text-area" label="Descrição" />
-						    </Fieldset>
-						    <div className={styles.category}>
-							    <span>Categoria - 
-							    	{ !createCat.open && <span className={styles.link} onClick={this.handleToggleCat}>criar nova</span> }
-							    	{ createCat.open && 
-							    		<div className={styles.createCat}>
-								    		<input className={styles.catInput} value={createCat.input} onChange={this.handleCreateCatInput} />
-								    		<button onClick={this.handleCreateCatSubmit}>Criar</button>
-								    	</div>
-								    	}
-							    </span>
-							    <select onChange={this.handleCatChange}>
-							    	{categoryList.map((item, key) => <option key={key} value={item}>{item}</option>)}
-							    </select>
-							</div>    
-						    <div className={styles.uploadContainer}>
-						    	<div>
-								    <span>Imagem de capa</span>
-							    	{!imageUpload.url &&
-							    		<Dropzone onDrop={this.handleImgUpload}>
-						            		<Icon name="ei-eye" size="l" />
-						            		<span>+</span>
-						            		<Line percent={imageUpload.progress} strokeWidth="4" strokeColor={imageUpload.running ? "#00FF00" : "#D3D3D3"} />
-							            </Dropzone>
-							    	}
-							    	{imageUpload.url &&
-							    		<div>
-							    			<img alt="preview" src={imageUpload.url} height='150' />
-							    		</div>
-							    	}
-							    </div>
-							    <div>
-							    	<span>PDF</span>
-							    	{!docUpload.url &&
-							    		<Dropzone onDrop={this.handleDocUpload}>
-						            		<Icon name="ei-eye" size="l" />
-						            		<span>+</span>
-						            		<Line percent={docUpload.progress} strokeWidth="4" strokeColor={docUpload.running ? "#00FF00" : "#D3D3D3"} />
-							            </Dropzone>
-							    	}
-							    	{docUpload.url &&
-							    		<div>
-							    			Upload do <a href={docUpload.url} target='_blank'>documento</a> feito com sucesso.
-							    		</div>
-							    	}
-							    </div>
-							</div>	
-					        <Button
-					        	label='Criar'
-					        	type='submit'
-					       	/>
-					    </form>
-			    </div>
-		    </div>
+		    <AdminModal
+		    	onSubmit={this.onSubmit}
+		    	handleToggleCat={this.handleToggleCat}
+		    	handleCreateCatSubmit={this.handleCreateCatSubmit}
+		    	handleCreateCatInput={this.handleCreateCatInput}
+		    	handleCatChange={this.handleCatChange}
+		    	handleImgUpload={this.handleImgUpload}
+		    	handleDocUpload={this.handleDocUpload}
+		    	{...this.state}
+		    	{...this.props}
+		    />
 		);
 	}
 }
 
-AdminModal.defaultProps = {
+Admin.defaultProps = {
 };
 
-AdminModal.propTypes = {
+Admin.propTypes = {
 };
 
-export default AdminModal;
+export default Admin;

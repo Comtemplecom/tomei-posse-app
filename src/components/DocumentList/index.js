@@ -9,7 +9,7 @@ import Modal from 'react-modal';
 
 import DocumentItem from '../DocumentItem';
 import Button from '../../components/Button';
-import AdminModal from '../../containers/AdminModal';
+import Admin from '../../containers/Admin';
 
 import styles from './styles.css';
 const modalStyle = {
@@ -35,7 +35,7 @@ function DocumentList({ openModal, closeModal, current, documents, categories, a
             if (item.category.indexOf(current) === -1 && current !== 'Todos') {
               return false;
             }
-            return <DocumentItem key={key} {...item} />;
+            return <DocumentItem key={key} {...item} admin={admin} />;
         })}
         {admin &&
             <div>
@@ -45,7 +45,7 @@ function DocumentList({ openModal, closeModal, current, documents, categories, a
                 onRequestClose={closeModal}
                 style={modalStyle}
               >
-                <AdminModal closeModal={closeModal} categoryList={categories} />
+                <Admin closeModal={closeModal} categoryList={categories} />
               </Modal>
             </div>
         }

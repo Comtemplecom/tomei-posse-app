@@ -18,7 +18,7 @@ function CategoryBar({ change, current, categories }) {
       <CategoryButton name='Todos' change={change} active={all} />
 			{categories.map((item, key) => {
         const active = (item.title === current);
-        return <CategoryButton key={key} name={item} change={change} active={active} />
+        return <CategoryButton key={key} name={item.name} change={change} active={active} />
       })}
 		</div>
     </div>

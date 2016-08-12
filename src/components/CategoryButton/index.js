@@ -22,7 +22,7 @@ function CategoryButton({ change, name, active }) {
 
 CategoryButton.propTypes = {
   change: React.PropTypes.func.isRequired,
-  title: React.PropTypes.string.isRequired,
+  name: React.PropTypes.string.isRequired,
   active: React.PropTypes.bool.isRequired,
 };
 

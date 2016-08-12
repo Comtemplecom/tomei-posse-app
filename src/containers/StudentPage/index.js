@@ -6,9 +6,9 @@
 
 import React from 'react';
 import { withRouter } from 'react-router';
-import mapValues from 'lodash/mapValues';
 
 import Firebase, { firebaseDb } from '../../utils/firebase';
+import { parseFirebaseObject, parseSimpleFirebaseObject } from '../../utils/misc';
 import { ADMIN_UID } from '../../../config';
 import { currentUser } from '../../utils/localstorage';
 
@@ -34,26 +34,17 @@ export class StudentPage extends React.Component { // eslint-disable-line react/
   componentDidMount () {
     // Fetch categories
     const categoryListRef = firebaseDb.ref('categories');
-    let catList = [];
     categoryListRef.on('value', (data) => {
-      mapValues(data.val(), (item) => {
-        catList.push(item);
-      });
-      console.log('catList:', catList);
       this.setState({
-        categories: catList
+        categories: parseSimpleFirebaseObject(data.val())
       });
     });
 
     // Fetch documents
     const documentsRef = firebaseDb.ref('documents');
-    let docList = [];
     documentsRef.on('value', (data) => {
-      mapValues(data.val(), (item) => {
-        docList.push(item);
-      });
       this.setState({
-        documents: docList
+        documents: parseFirebaseObject(data.val())
       });
     });
 
