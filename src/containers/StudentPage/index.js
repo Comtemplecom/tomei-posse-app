@@ -24,7 +24,7 @@ export class StudentPage extends React.Component { // eslint-disable-line react/
     super(props);
     this.state = {
       admin: false,
-      current: 'Todos',
+      currentCategory: 'Todos',
       adminModal: false,
       categories: [],
       documents: [],
@@ -85,14 +85,14 @@ export class StudentPage extends React.Component { // eslint-disable-line react/
   }
 
   render() {
-    const { current, categories } = this.state;
+    const { currentCategory, categories } = this.state;
     return (
       <div>
         <Header />
         <main className={styles.main}>
           <CategoryBar
             change={this.handleCategoryChange}
-            current={current}
+            current={currentCategory}
             categories={categories}
           />
           <DocumentList

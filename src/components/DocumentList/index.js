@@ -27,12 +27,12 @@ const modalStyle = {
   },
 };
 
-function DocumentList({ openModal, closeModal, current, documents, categories, admin, adminModal }) {
+function DocumentList({ openModal, closeModal, currentCategory, documents, categories, admin, adminModal }) {
   return (
     <div className={styles.wrapper}>
     	<div className={styles.container}>
     		{documents.map((item, key) => {
-            if (item.category.indexOf(current) === -1 && current !== 'Todos') {
+            if (item.category.indexOf(currentCategory) === -1 && currentCategory !== 'Todos') {
               return false;
             }
             return <DocumentItem key={key} {...item} admin={admin} />;

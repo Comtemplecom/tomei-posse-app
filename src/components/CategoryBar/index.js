@@ -11,7 +11,7 @@ import CategoryButton from '../CategoryButton';
 import styles from './styles.css';
 
 function CategoryBar({ change, current, categories }) {
-  const all = (current === 'Todos')
+  const all = (current === 'Todos');
   return (
     <div className={styles.wrapper}>
     	<div className={styles.container}>
