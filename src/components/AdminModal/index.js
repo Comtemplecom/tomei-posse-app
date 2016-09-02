@@ -26,23 +26,23 @@ function AdminModal({
 			        	<Fieldset formValue={formValue}>
 					        <Field select="title" label="Título" />
 					        <Field select="description" type="text-area" label="Descrição" />
-					    </Fieldset>
-					    <div className={styles.category}>
-						    <span>Categoria - 
+					    	</Fieldset>
+					    <span className={styles.category}>
+						    <span>Categoria -
 						    	{ !createCat.open && <span className={styles.link} onClick={handleToggleCat}>criar nova</span> }
-						    	{ createCat.open && 
-						    		<div className={styles.createCat}>
+						    	{ createCat.open &&
+						    		<span className={styles.createCat}>
 							    		<input className={styles.catInput} value={createCat.input} onChange={handleCreateCatInput} />
 							    		<button onClick={handleCreateCatSubmit}>Criar</button>
-							    	</div>
+							    	</span>
 							    	}
 						    </span>
 						    <select onChange={handleCatChange}>
 						    	{categoryList.map((item, key) => <option key={key} value={item.name}>{item.name}</option>)}
 						    </select>
-						</div>    
-					    <div className={styles.uploadContainer}>
-					    	<div>
+						</span>
+					    <span className={styles.uploadContainer}>
+					    	<span>
 							    <span>Imagem de capa</span>
 						    	{!imageUpload.url &&
 						    		<Dropzone onDrop={handleImgUpload}>
@@ -52,12 +52,12 @@ function AdminModal({
 						            </Dropzone>
 						    	}
 						    	{imageUpload.url &&
-						    		<div>
+						    		<span>
 						    			<img alt="preview" src={imageUpload.url} height='150' />
-						    		</div>
+						    		</span>
 						    	}
-						    </div>
-						    <div>
+						    </span>
+						    <span>
 						    	<span>PDF</span>
 						    	{!docUpload.url &&
 						    		<Dropzone onDrop={handleDocUpload}>
@@ -67,12 +67,12 @@ function AdminModal({
 						            </Dropzone>
 						    	}
 						    	{docUpload.url &&
-						    		<div>
+						    		<span>
 						    			Upload do <a href={docUpload.url} target='_blank'>documento</a> feito com sucesso.
-						    		</div>
+						    		</span>
 						    	}
-						    </div>
-						</div>	
+						    </span>
+						</span>
 				        <Button
 				        	label='Criar'
 				        	type='submit'

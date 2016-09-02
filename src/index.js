@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, IndexRoute, hashHistory } from 'react-router';
-import { currentUser } from './utils/localstorage';
 import Firebase from './utils/firebase';
 import App from './containers/App';
 import NotFoundPage from './containers/NotFoundPage';
@@ -22,37 +21,31 @@ Promise.all([oswaldObserver.load(), openSansObserver.load()])
   document.body.classList.add(styles.fontLoaded);
 });
 
-const user = () => {
-    return Firebase.fetchUser().then((res) => {
-      return res;
-    }).catch((err) => {
-      console.log('err:', err);
-      return err;
-    })
-}
-
 // Function that redirects to LoginPage if not logged
 const redirectToLogin = (nextState, replace, callback) => {
-  if (!currentUser()) {
-    replace({
-      pathname: '/',
-      state: { nextPathname: nextState.location.pathname },
-    });
-    callback();
-  } else {
-    callback();
-  }
+  Firebase.fetchUser().then((res) => {
+    if(res === null) {
+      replace({
+        pathname: '/',
+        state: { nextPathname: nextState.location.pathname },
+      });
+      callback();
+    } else {
+      callback();
+    }
+  });
 }
 
 // Function that redirects LoginPage to dashboard if logged
 const redirectToDashboard = (nextState, replace, callback) => {
-    if (currentUser()) {
+  Firebase.fetchUser().then((res) => {
+    if(res !== null ) {
       replace('/area-restrita');
       callback();
     } else {
       callback();
     }
-
+  })
 }
 
 ReactDOM.render(

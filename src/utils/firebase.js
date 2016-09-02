@@ -44,9 +44,9 @@ const FireBaseTools = {
         }
       });
       firebaseAuth.onAuthStateChanged(user => {
-        resolve(firebase.auth().currentUser);
+        resolve(firebaseAuth.currentUser);
         if (user) {
-          fetchUserObject(firebase.auth().currentUser).then(user => {
+          fetchUserObject(firebaseAuth.currentUser).then(user => {
             resolve(user);
           });
         } else {
