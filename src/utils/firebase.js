@@ -47,6 +47,7 @@ const FireBaseTools = {
         resolve(firebaseAuth.currentUser);
         if (user) {
           fetchUserObject(firebaseAuth.currentUser).then(user => {
+            console.log(user);
             resolve(user);
           });
         } else {
