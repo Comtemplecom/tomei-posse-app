@@ -76,6 +76,7 @@ function AdminModal({
 				        <Button
 				        	label='Criar'
 				        	type='submit'
+									dark
 				       	/>
 				    </form>
 		    </div>

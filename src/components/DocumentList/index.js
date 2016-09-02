@@ -39,7 +39,7 @@ function DocumentList({ openModal, closeModal, currentCategory, documents, categ
         })}
         {admin &&
             <div>
-              <Button label='Adicionar novo' onClick={openModal} />
+              <Button label='Adicionar novo' onClick={openModal} dark />
               <Modal
                 isOpen={adminModal}
                 onRequestClose={closeModal}
