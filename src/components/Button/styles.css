@@ -13,8 +13,8 @@
 
 .buttonBase:hover {
   background: none;
-  color: #000;
-  border: 2px solid #000;
+  color: #fff;
+  border: 2px solid #fff;
 }
 
 .buttonDark:hover {

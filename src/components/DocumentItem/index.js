@@ -23,10 +23,8 @@ function DocumentItem({ title, description, coverImg, documentUrl, category }) {
     		</div>
     		<div className={styles.button}>
     			<a href={documentUrl} target='_blank'>
-                    <Button
-                        label="baixar"
-                    />
-                </a>    
+            <Button label="baixar" />
+          </a>
     		</div>
     	</div>
     </div>
