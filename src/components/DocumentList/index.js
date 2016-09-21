@@ -6,6 +6,7 @@
 
 import React from 'react';
 import Modal from 'react-modal';
+import { Link } from 'react-router';
 
 import DocumentItem from '../DocumentItem';
 import Button from '../../components/Button';
@@ -38,8 +39,11 @@ function DocumentList({ openModal, closeModal, currentCategory, documents, categ
             return <DocumentItem key={key} {...item} admin={admin} />;
         })}
         {admin &&
-            <div>
-              <Button label='Adicionar novo' onClick={openModal} dark />
+            <nav className={styles.navbar}>
+              <Button label='Adicionar novo documento' onClick={openModal} dark />
+              <Link to="/area-restrita/novo-usuario">
+                <Button label='Adicionar novo usuário' onClick={openModal} dark />
+              </Link>
               <Modal
                 isOpen={adminModal}
                 onRequestClose={closeModal}
@@ -47,7 +51,7 @@ function DocumentList({ openModal, closeModal, currentCategory, documents, categ
               >
                 <Admin closeModal={closeModal} categoryList={categories} />
               </Modal>
-            </div>
+            </nav>
         }
     	</div>
     </div>

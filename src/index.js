@@ -6,6 +6,7 @@ import App from './containers/App';
 import NotFoundPage from './containers/NotFoundPage';
 import LoginPage from './containers/LoginPage';
 import StudentPage from './containers/StudentPage';
+import NewUserPage from './containers/NewUserPage';
 import 'sanitize.css/sanitize.css';
 
 // Fonts
@@ -59,6 +60,11 @@ ReactDOM.render(
         onEnter={redirectToLogin}
         path="/area-restrita"
         component={StudentPage}
+      />
+      <Route
+        onEnter={redirectToLogin}
+        path="/area-restrita/novo-usuario"
+        component={NewUserPage}
       />
       <Route path="*" component={NotFoundPage}/>
     </Route>

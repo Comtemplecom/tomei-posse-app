@@ -5,12 +5,9 @@
  */
 
 import React from 'react';
-import { withRouter } from 'react-router';
 
-import Firebase, { firebaseDb } from '../../utils/firebase';
+import { firebaseDb } from '../../utils/firebase';
 import { parseFirebaseObject, parseSimpleFirebaseObject } from '../../utils/misc';
-import { ADMIN_UID } from '../../../config';
-import { currentUser } from '../../utils/localstorage';
 
 import Header from '../../components/MainHeader';
 import CategoryBar from '../../components/CategoryBar';
@@ -23,7 +20,6 @@ export class StudentPage extends React.Component { // eslint-disable-line react/
   constructor(props) {
     super(props);
     this.state = {
-      admin: false,
       currentCategory: 'Todos',
       adminModal: false,
       categories: [],
@@ -47,29 +43,12 @@ export class StudentPage extends React.Component { // eslint-disable-line react/
         documents: parseFirebaseObject(data.val())
       });
     });
-
-    // Check is user is admin
-    if(currentUser().uid === ADMIN_UID) {
-      this.setState({
-        admin: true,
-      });
-    }
   }
 
   handleCategoryChange = (category) => {
     this.setState({
       currentCategory: category
     })
-  }
-
-  handleLogout = () => {
-    Firebase.logoutUser().then((res) => {
-      if(res.success) {
-          this.props.router.push('/');
-      }
-    }).catch((err) => {
-      console.log(err);
-    });
   }
 
   openModal = () => {
@@ -85,6 +64,7 @@ export class StudentPage extends React.Component { // eslint-disable-line react/
   }
 
   render() {
+    const { userData, logout, admin } = this.props;
     const { currentCategory, categories } = this.state;
     return (
       <div>
@@ -99,15 +79,16 @@ export class StudentPage extends React.Component { // eslint-disable-line react/
             openModal={this.openModal}
             closeModal={this.closeModal}
             {...this.state}
+            admin={admin}
           />
         </main>
         <Footer
-          logout={this.handleLogout}
-          user={currentUser()}
+          logout={logout}
+          user={userData}
         />
       </div>
     );
   }
 }
 
-export default withRouter(StudentPage);
+export default StudentPage;
