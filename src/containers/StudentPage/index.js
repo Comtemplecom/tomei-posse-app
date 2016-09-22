@@ -81,7 +81,7 @@ export class StudentPage extends React.Component { // eslint-disable-line react/
   }
 
   render() {
-    const { userData, logout, admin } = this.props;
+    const { admin } = this.props;
     const { currentCategory, categories, adminModal } = this.state;
     return (
       <div>
@@ -106,10 +106,7 @@ export class StudentPage extends React.Component { // eslint-disable-line react/
               <Admin closeModal={this.closeModal} categoryList={categories} />
             </Modal>}
         </main>
-        <Footer
-          logout={logout}
-          user={userData}
-        />
+        <Footer {...this.props} />
       </div>
     );
   }

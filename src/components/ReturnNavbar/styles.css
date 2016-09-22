@@ -1,0 +1,12 @@
+.wrapper {
+  position: fixed;
+  top: 0;
+  background: #000;
+  width: 100%;
+  padding: 20px 0;
+}
+.wrapper a {
+  color: #fff;
+  text-decoration: none;
+  padding-left: 30px;
+}

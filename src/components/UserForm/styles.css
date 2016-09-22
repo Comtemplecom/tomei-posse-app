@@ -1,0 +1,25 @@
+.wrapper {
+  padding: 100px 0;
+}
+
+.wrapper h1 {
+  color: #000;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 100;
+}
+
+.container {
+    width: 90%;
+    height: 300px;
+    max-width: 968px;
+    margin: 0 auto;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container > * {
+  width: 300px;
+}
