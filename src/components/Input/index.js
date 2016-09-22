@@ -8,7 +8,7 @@ import React from 'react';
 
 import styles from './styles.css';
 
-function Input({ onChange, title, type, value }) {
+function Input({ onChange, title, type, value, name }) {
   return (
     <div className={styles.container}>
       {title &&
@@ -16,6 +16,7 @@ function Input({ onChange, title, type, value }) {
       }
       <input
         type={type}
+        name={name}
         value={value}
         onChange={onChange}
       />
@@ -30,6 +31,7 @@ Input.defaultProps = {
 Input.propTypes = {
   onChange: React.PropTypes.func.isRequired,
   title: React.PropTypes.string,
+  name: React.PropTypes.string,
   type: React.PropTypes.string,
   value: React.PropTypes.string,
 };

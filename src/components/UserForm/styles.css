@@ -23,3 +23,8 @@
 .container > * {
   width: 300px;
 }
+
+.error {
+  font-size: 0.6em;
+  color: red;
+}
