@@ -1,10 +1,20 @@
 import React from 'react';
-import Firebase, { firebaseDb } from '../../utils/firebase';
+import Firebase from '../../utils/firebase';
+import Input from '../../components/Input';
 
 class NewUserPage extends React.Component {
   render() {
+    console.log(this.props);
+    console.log(Firebase.registerUser);
     return (
-      <h1>New User</h1>
+      <div>
+        <Input
+          title="Username"
+          type="text"
+          value={passwordInput}
+          onChange={handlePassword}
+        />
+      </div>
     );
   }
 }

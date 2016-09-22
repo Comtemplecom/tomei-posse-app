@@ -5,6 +5,7 @@
  */
 
 import React from 'react';
+import Modal from 'react-modal';
 
 import { firebaseDb } from '../../utils/firebase';
 import { parseFirebaseObject, parseSimpleFirebaseObject } from '../../utils/misc';
@@ -13,8 +14,24 @@ import Header from '../../components/MainHeader';
 import CategoryBar from '../../components/CategoryBar';
 import DocumentList from '../../components/DocumentList';
 import Footer from '../../components/Footer';
+import Navbar from '../../components/Navbar';
+import Admin from '../Admin';
 
 import styles from './styles.css';
+const modalStyle = {
+  content : {
+    width: '80%',
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+  overlay : {
+    backgroundColor: 'rgba(0, 0, 0, 0.75)'
+  },
+};
 
 export class StudentPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
@@ -65,9 +82,10 @@ export class StudentPage extends React.Component { // eslint-disable-line react/
 
   render() {
     const { userData, logout, admin } = this.props;
-    const { currentCategory, categories } = this.state;
+    const { currentCategory, categories, adminModal } = this.state;
     return (
       <div>
+        {admin && <Navbar />}
         <Header />
         <main className={styles.main}>
           <CategoryBar
@@ -76,11 +94,17 @@ export class StudentPage extends React.Component { // eslint-disable-line react/
             categories={categories}
           />
           <DocumentList
-            openModal={this.openModal}
-            closeModal={this.closeModal}
             {...this.state}
             admin={admin}
           />
+          {admin &&
+            <Modal
+              isOpen={adminModal}
+              onRequestClose={this.closeModal}
+              style={modalStyle}
+            >
+              <Admin closeModal={this.closeModal} categoryList={categories} />
+            </Modal>}
         </main>
         <Footer
           logout={logout}
