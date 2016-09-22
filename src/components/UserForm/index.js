@@ -16,7 +16,7 @@ function Model({ userName, onChange }) {
       <h1>Cadastrar novo usuário</h1>
       <form className={styles.container}>
         <Input
-          title="Username"
+          title="Nome de usuário"
           type="text"
           value={userName}
           onChange={onChange}

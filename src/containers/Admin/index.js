@@ -13,12 +13,13 @@ import AdminModal from '../../components/AdminModal';
 
 class Admin extends React.Component {
 	constructor(props) {
-    	super(props)
+    	super(props);
+			const { categoryList } = this.props;
 	    let formValue = createValue({
 	      	value: props.value,
 	      	onChange: this.onChangeForm.bind(this)
 	    });
-	    const firstCat = this.props.categoryList[0].name;
+	    const firstCat = () => (categoryList.length > 0) ? categoryList[0].name : 'carregando...';
     	this.state = {
     		formValue,
     		titleError: false,
@@ -129,7 +130,7 @@ class Admin extends React.Component {
 	        	},
 	        });
 	    });
-  		
+
   	}
 
   	handleDocUpload = (file) => {
@@ -214,7 +215,7 @@ class Admin extends React.Component {
 	        	},
 	        });
 	    });
-  		
+
   	}
 
   	handleToggleCat = () => {

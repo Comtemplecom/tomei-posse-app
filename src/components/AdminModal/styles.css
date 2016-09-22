@@ -8,6 +8,17 @@
 	flex-flow: row wrap;
 	align-items: center;
 	justify-content: space-around;
+	padding: 50px 0;
+}
+
+.add {
+	position: relative;
+	bottom: 60px;
+	left: 45%;
+	padding: 10px;
+	background: #000;
+	color: #fff;
+	border-radius: 30px;
 }
 
 .category {

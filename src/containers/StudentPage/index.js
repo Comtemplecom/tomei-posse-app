@@ -33,7 +33,7 @@ const modalStyle = {
   },
 };
 
-export class StudentPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
+export class StudentPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -85,7 +85,7 @@ export class StudentPage extends React.Component { // eslint-disable-line react/
     const { currentCategory, categories, adminModal } = this.state;
     return (
       <div>
-        {admin && <Navbar />}
+        {admin && <Navbar openModal={this.openModal} />}
         <Header />
         <main className={styles.main}>
           <CategoryBar

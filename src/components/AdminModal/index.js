@@ -47,7 +47,7 @@ function AdminModal({
 						    	{!imageUpload.url &&
 						    		<Dropzone onDrop={handleImgUpload}>
 					            		<Icon name="ei-eye" size="l" />
-					            		<span>+</span>
+					            		<span className={styles.add}>+</span>
 					            		<Line percent={imageUpload.progress} strokeWidth="4" strokeColor={imageUpload.running ? "#00FF00" : "#D3D3D3"} />
 						            </Dropzone>
 						    	}
@@ -62,7 +62,7 @@ function AdminModal({
 						    	{!docUpload.url &&
 						    		<Dropzone onDrop={handleDocUpload}>
 					            		<Icon name="ei-eye" size="l" />
-					            		<span>+</span>
+					            		<span className={styles.add}>+</span>
 					            		<Line percent={docUpload.progress} strokeWidth="4" strokeColor={docUpload.running ? "#00FF00" : "#D3D3D3"} />
 						            </Dropzone>
 						    	}
